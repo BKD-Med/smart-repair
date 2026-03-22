@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Repair</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <div class="noise"></div>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">⚙</span>
+        <span class="logo-text">Smart<strong>Repair</strong></span>
+      </div>
+      <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" onclick="setLang('fr')">FR</button>
+        <button class="lang-btn" onclick="setLang('ar')">ع</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <section class="hero">
+      <div class="hero-label" data-i18n="badge">DIAGNOSTIC SYSTEM v2.0</div>
+      <h1 class="hero-title" data-i18n="title_line1">What's broken?<br /><span data-i18n="title_line2">We'll fix it.</span></h1>
+      <p class="hero-sub" data-i18n="subtitle">Describe your device problem and get an instant analysis — possible causes and step-by-step repair instructions.</p>
+    </section>
+
+    <section class="form-section">
+      <div class="form-card">
+        <div class="form-card-header">
+          <span class="step-badge">01</span>
+          <span data-i18n="form_header">Enter Device Info</span>
+        </div>
+
+        <div class="form-body">
+          <div class="field-group">
+            <label for="device" data-i18n="label_device">Device Type</label>
+            <div class="select-wrap">
+              <select id="device">
+                <option value="" disabled selected data-i18n="select_placeholder">Select a device…</option>
+                <option value="arduino">🔌 Arduino</option>
+                <option value="laptop" data-i18n="dev_laptop">💻 Laptop</option>
+                <option value="tv">📺 TV</option>
+                <option value="smartphone" data-i18n="dev_smartphone">📱 Smartphone</option>
+                <option value="printer" data-i18n="dev_printer">🖨️ Printer</option>
+                <option value="router" data-i18n="dev_router">📡 Router / WiFi</option>
+                <option value="desktop" data-i18n="dev_desktop">🖥️ Desktop PC</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label for="problem" data-i18n="label_problem">Problem Description</label>
+            <input
+              type="text"
+              id="problem"
+              data-i18n-placeholder="input_placeholder"
+              placeholder="e.g. not turning on, no internet, paper jam…"
+              autocomplete="off"
+            />
+          </div>
+
+          <button class="btn-diagnose" id="diagnoseBtn" onclick="runDiagnosis()">
+            <span class="btn-text" data-i18n="btn_diagnose">Run Diagnosis</span>
+            <span class="btn-icon">→</span>
+          </button>
+
+          <div class="error-msg" id="errorMsg"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="result-section" id="resultSection">
+      <div class="result-header">
+        <span class="step-badge">02</span>
+        <span data-i18n="result_header">Diagnosis Report</span>
+        <div class="result-meta" id="resultMeta"></div>
+      </div>
+
+      <div class="result-grid">
+
+        <div class="result-card causes-card">
+          <div class="result-card-title">
+            <span class="rc-icon">⚠</span>
+            <span data-i18n="causes_title">Possible Causes</span>
+          </div>
+          <ul class="result-list" id="causesList"></ul>
+        </div>
+
+        <div class="result-card steps-card">
+          <div class="result-card-title">
+            <span class="rc-icon">🔧</span>
+            <span data-i18n="steps_title">Repair Steps</span>
+          </div>
+          <ol class="result-list steps-list" id="stepsList"></ol>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span>Smart Repair — Diagnostic Tool</span>
+    <span class="footer-sep">|</span>
+    <span data-i18n="footer_note">Results are rule-based estimates. Always verify with a certified technician.</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
